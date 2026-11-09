@@ -94,3 +94,32 @@ regal.alle_bücher_anzeigen()
 # - Implementieren Sie eine Methode 'tanken', die die Reichweite um einen gegebenen Wert erhöht.
 # - Stellen Sie sicher, dass der Tankinhalt privat ist und nur über eine Methode abgefragt werden kann.
 # - Instanzieren Sie ein Elektrofahrrad und testen Sie die Methoden.
+class Ebike:
+    """Eine Klasse zur Darstellung eines Elektrofahrrads."""
+
+    def __init__(self, marke: str, modell: str, reichweite: int):
+        """Initialisiert das Ebike mit Marke, Modell und Reichweite."""
+        self.marke = marke  # Öffentliches Attribut
+        self.modell = modell  # Öffentliches Attribut
+        self._reichweite = reichweite  # Privates Attribut für die Reichweite
+
+    def tanken(self, menge: int):
+        """Erhöht die Reichweite um die angegebene Menge."""
+        if menge > 0:
+            self._reichweite += menge
+            print(f"Die Reichweite wurde um {menge} km erhöht. Neue Reichweite: {self._reichweite} km.")
+        else:
+            print("Die Menge zum Tanken muss positiv sein.")
+
+    def get_reichweite(self) -> int:
+        """Gibt die aktuelle Reichweite des Ebikes zurück."""
+        return self._reichweite
+
+
+# Instanzierung eines Ebikes und Testen der Methoden
+mein_ebike = Ebike("Giant", "Explore E+", 100)
+print(f"Marke: {mein_ebike.marke}")
+print(f"Modell: {mein_ebike.modell}")
+print(f"Reichweite: {mein_ebike.get_reichweite()} km")
+mein_ebike.tanken(50)
+print(f"Neue Reichweite: {mein_ebike.get_reichweite()} km")
