@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+src/aufgaben_package/__init__.py
+src/aufgaben_package/personen.py
+src/aufgaben_package/rechen_operation.py
+src/aufgaben_package.egg-info/PKG-INFO
+src/aufgaben_package.egg-info/SOURCES.txt
+src/aufgaben_package.egg-info/dependency_links.txt
+src/aufgaben_package.egg-info/requires.txt
+src/aufgaben_package.egg-info/top_level.txt
+tests/test_rechen_operation.py
