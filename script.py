@@ -17,4 +17,45 @@
 
 # Optional:
 # - Erstellen Sie eine Methode, die Transaktionen protokolliert und eine Liste von Ein- und Auszahlungen ausgibt.
+class BankAccount:
+    """Eine Klasse zur Darstellung eines einfachen Bankkontos."""
+    def __init__(self, inhaber, kontonummer, anfangs_kontostand=0):
+        self.inhaber = inhaber
+        self.kontonummer = kontonummer
+        self.__kontostand = anfangs_kontostand
+        self.__transaktionen = []
 
+    def einzahlen(self, betrag):
+        """Erhöht den Kontostand um den eingezahlten Betrag."""
+        if betrag > 0:
+            self.__kontostand += betrag
+            self.__transaktionen.append(f"Einzahlung: {betrag}")
+        else:
+            print("Betrag muss positiv sein.")
+
+    def abheben(self, betrag):
+        """Verringert den Kontostand um den abgehobenen Betrag."""
+        if betrag > 0:
+            if self.__kontostand >= betrag:
+                self.__kontostand -= betrag
+                self.__transaktionen.append(f"Abhebung: {betrag}")
+            else:
+                print("Nicht genügend Guthaben.")
+        else:
+            print("Betrag muss positiv sein.")
+
+    def get_kontostand(self):
+        """Gibt den aktuellen Kontostand zurück."""
+        return self.__kontostand
+
+    def get_transaktionen(self):
+        """Gibt die Liste der Transaktionen zurück."""
+        return self.__transaktionen
+
+    def __str__(self):
+        return f"Bankkonto von {self.inhaber}, Kontonummer: {self.kontonummer}, Kontostand: {self.__kontostand}"
+
+konto = BankAccount("Max Mustermann", "1234567890", 1000)
+konto.einzahlen(500)
+konto.abheben(200)
+print(konto)
