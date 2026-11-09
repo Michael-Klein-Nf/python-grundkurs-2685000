@@ -1,3 +1,5 @@
+"""Package configuration for the Python Grundkurs examples."""
+
 from setuptools import setup, find_packages
 
 with open('requirements.txt') as f:
