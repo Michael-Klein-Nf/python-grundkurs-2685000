@@ -54,7 +54,7 @@ class BankAccount:
             self._transaktionen.append(("Einzahlung", betrag))
             print(f"{betrag} EUR wurden eingezahlt.")
         else:
-            print("Einzahlung fehlgeschlagen: Betrag muss positiv sein.")
+            raise ValueError("Einzahlung fehlgeschlagen: Betrag muss positiv sein.")
 
     def abheben(self, betrag: float) -> None:
         """Verringert den Kontostand um den abgehobenen Betrag, wenn genügend Guthaben vorhanden ist."""
@@ -64,9 +64,9 @@ class BankAccount:
                 self._transaktionen.append(("Abhebung", betrag))
                 print(f"{betrag} EUR wurden abgehoben.")
             else:
-                print("Abhebung fehlgeschlagen: Unzureichendes Guthaben.")
+                raise ValueError("Abhebung fehlgeschlagen: Unzureichendes Guthaben.")
         else:
-            print("Abhebung fehlgeschlagen: Betrag muss positiv sein.")
+            raise ValueError("Abhebung fehlgeschlagen: Betrag muss positiv sein.")
 
     def get_kontostand(self) -> float:
         """Gibt den aktuellen Kontostand zurück."""
@@ -89,9 +89,18 @@ konto = BankAccount("Max Mustermann", "DE1234567890", 100.0)
 
 print(konto)
 
-konto.einzahlen(50)
-konto.abheben(30)
-konto.abheben(150)  # Sollte aufgrund von unzureichendem Guthaben fehlschlagen
+try:
+    konto.einzahlen(50)
+except ValueError as e:
+    print(f"Fehler bei Einzahlung: {e}")
+try:
+    konto.abheben(30)
+except ValueError as e:
+    print(f"Fehler bei Abhebung: {e}")
+try:
+    konto.abheben(150)
+except ValueError as e:
+    print(f"Fehler bei Abhebung: {e}")
 
 print(f"Aktueller Kontostand: {konto.get_kontostand()} EUR")
 
